@@ -1,7 +1,5 @@
-/**
- * Pricing page is handled by src/pages/pricing.tsx
- * This file is neutralized to avoid route conflicts.
- */
-export default function Page() {
+// This file is neutralized to resolve the conflict with src/pages/pricing.tsx.
+// The pricing page is managed by the Pages Router.
+export default function NeutralPricingPage() {
   return null;
 }

@@ -36,14 +36,14 @@ export default function DashboardPage() {
     <div className="space-y-8 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Good morning, John! 👋</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-slate-800">Good morning, John! 👋</h1>
           <p className="text-muted-foreground mt-1">Here's what's happening with your projects today.</p>
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" className="rounded-xl glass border-primary/20 text-primary hover:bg-primary/5">
             <BrainCircuit className="mr-2 h-4 w-4" /> AI Workflow Review
           </Button>
-          <Button className="rounded-xl shadow-lg shadow-primary/20">
+          <Button className="rounded-xl shadow-lg shadow-primary/20 bg-primary">
             Share Report
           </Button>
         </div>
