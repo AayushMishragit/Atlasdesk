@@ -1,8 +1,10 @@
 "use client";
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
 import { 
+  ArrowUpRight, 
   Clock, 
   CheckCircle2, 
   ListTodo, 
@@ -11,13 +13,15 @@ import {
   BrainCircuit
 } from "lucide-react";
 import { 
+  LineChart, 
+  Line, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
   ResponsiveContainer,
   AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip
+  Area
 } from "recharts";
 import { motion } from "framer-motion";
 
@@ -49,6 +53,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
+      {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
           { label: "Active Projects", value: "12", icon: Clock, trend: "+2 this week", color: "text-blue-500" },
@@ -79,12 +84,17 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Main Chart */}
         <Card className="lg:col-span-2 rounded-2xl border-none soft-shadow p-6">
           <div className="flex justify-between items-center mb-6">
             <div>
               <h3 className="text-lg font-bold">Team Productivity</h3>
               <p className="text-sm text-muted-foreground">Velocity over the last 7 days</p>
             </div>
+            <select className="bg-muted text-xs font-medium rounded-lg px-2 py-1 outline-none">
+              <option>Last 7 days</option>
+              <option>Last 30 days</option>
+            </select>
           </div>
           <div className="h-[300px] w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -98,13 +108,16 @@ export default function DashboardPage() {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eee" />
                 <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#888', fontSize: 12}} />
                 <YAxis axisLine={false} tickLine={false} tick={{fill: '#888', fontSize: 12}} />
-                <Tooltip />
+                <Tooltip 
+                  contentStyle={{borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)'}}
+                />
                 <Area type="monotone" dataKey="tasks" stroke="hsl(var(--primary))" strokeWidth={3} fillOpacity={1} fill="url(#colorTasks)" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
         </Card>
 
+        {/* Sidebar Widgets */}
         <div className="space-y-6">
           <Card className="rounded-2xl border-none soft-shadow">
             <CardHeader>
@@ -117,13 +130,31 @@ export default function DashboardPage() {
                 { title: "Fix billing issue", due: "Tomorrow", checked: false },
               ].map((task, i) => (
                 <div key={i} className="flex items-center gap-3 p-3 rounded-xl hover:bg-muted/50 transition-colors group">
-                  <CheckCircle2 className={`h-4 w-4 ${task.checked ? 'text-primary' : 'text-muted'}`} />
+                  <div className={`w-5 h-5 rounded border-2 flex items-center justify-center cursor-pointer transition-all ${task.checked ? 'bg-primary border-primary' : 'border-muted'}`}>
+                    {task.checked && <CheckCircle2 className="h-3 w-3 text-white" />}
+                  </div>
                   <div className="flex-1">
                     <p className={`text-sm font-medium ${task.checked ? 'line-through text-muted-foreground' : ''}`}>{task.title}</p>
                     <p className="text-xs text-muted-foreground">{task.due}</p>
                   </div>
                 </div>
               ))}
+              <Button variant="ghost" className="w-full text-primary hover:text-primary hover:bg-primary/5 text-sm rounded-xl">View all tasks</Button>
+            </CardContent>
+          </Card>
+
+          <Card className="rounded-2xl border-none soft-shadow bg-primary text-primary-foreground overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 blur-3xl rounded-full" />
+            <CardHeader>
+              <CardTitle className="text-base flex items-center gap-2">
+                <BrainCircuit size={18} /> AI Assistant
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm opacity-90 leading-relaxed">
+                "Based on your recent activity, I suggest finalizing the 'API Docs' task. You're 85% through the sprint!"
+              </p>
+              <Button variant="secondary" size="sm" className="mt-4 w-full rounded-xl font-bold">Try Recommendations</Button>
             </CardContent>
           </Card>
         </div>

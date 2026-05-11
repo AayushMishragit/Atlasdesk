@@ -3,11 +3,10 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { 
   Rocket, 
-  Shield, 
   Zap, 
   Users, 
   BarChart, 
-  CheckCircle2,
+  Shield, 
   ArrowRight
 } from "lucide-react";
 import Link from "next/link";
@@ -43,95 +42,100 @@ export default function LandingPage() {
       <Navbar />
       
       <main className="flex-grow">
-        {/* Hero Section */}
         <section className="pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
           <div className="container mx-auto px-4">
             <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold animate-in fade-in slide-in-from-bottom-4 duration-1000">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold"
+              >
                 <Rocket size={16} />
                 <span>Reimagined for high-performance teams</span>
-              </div>
+              </motion.div>
               
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-tight">
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-tight"
+              >
                 Project management <span className="text-primary">evolved</span> with AI.
-              </h1>
+              </motion.h1>
               
-              <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-xl text-muted-foreground max-w-2xl leading-relaxed"
+              >
                 AtlasDesk combines intuitive task management with powerful generative AI to help your team ship faster, smarter, and together.
-              </p>
+              </motion.p>
               
-              <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-col sm:flex-row items-center gap-4 pt-4"
+              >
                 <Button asChild size="lg" className="h-14 px-8 rounded-2xl text-lg font-bold shadow-xl shadow-primary/20">
                   <Link href="/register">Get Started for Free</Link>
                 </Button>
                 <Button variant="outline" size="lg" className="h-14 px-8 rounded-2xl text-lg font-bold">
                   Book a Demo
                 </Button>
-              </div>
+              </motion.div>
             </div>
 
-            <div className="mt-20 relative max-w-6xl mx-auto rounded-3xl overflow-hidden border shadow-2xl animate-in fade-in zoom-in duration-1000 delay-200">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="mt-20 relative max-w-6xl mx-auto rounded-3xl overflow-hidden border shadow-2xl"
+            >
               <Image 
                 src="https://picsum.photos/seed/atlas-hero/1200/800"
                 alt="AtlasDesk Dashboard Preview"
                 width={1200}
                 height={800}
                 className="w-full object-cover"
-                data-ai-hint="SaaS dashboard"
               />
-            </div>
+            </motion.div>
           </div>
         </section>
 
-        {/* Features Section */}
         <section id="features" className="py-24 bg-muted/50">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-2xl mx-auto mb-20 space-y-4">
               <h2 className="text-3xl md:text-4xl font-bold">Everything you need to ship faster</h2>
-              <p className="text-muted-foreground text-lg">Powerful features built for teams of all sizes, from startups to enterprises.</p>
+              <p className="text-muted-foreground text-lg">Powerful features built for teams of all sizes.</p>
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((feature, idx) => (
-                <div key={idx} className="p-8 rounded-3xl bg-background border hover:shadow-xl transition-shadow space-y-4">
+                <motion.div 
+                  key={idx}
+                  whileHover={{ y: -5 }}
+                  className="p-8 rounded-3xl bg-background border hover:shadow-xl transition-shadow space-y-4"
+                >
                   <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
                     <feature.icon size={24} />
                   </div>
                   <h3 className="text-xl font-bold">{feature.title}</h3>
                   <p className="text-muted-foreground">{feature.description}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Social Proof / Stats */}
-        <section className="py-24 border-y">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-              {[
-                { label: "Active Users", value: "50k+" },
-                { label: "Projects Shipped", value: "1.2M" },
-                { label: "Happy Teams", value: "5,000+" },
-                { label: "Countries", value: "120+" },
-              ].map((stat, i) => (
-                <div key={i} className="space-y-2">
-                  <p className="text-4xl font-bold text-primary">{stat.value}</p>
-                  <p className="text-muted-foreground font-medium">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
         <section className="py-24 overflow-hidden relative">
           <div className="absolute inset-0 hero-gradient opacity-50" />
           <div className="container mx-auto px-4 relative">
             <div className="max-w-4xl mx-auto p-12 md:p-20 rounded-[3rem] bg-primary text-primary-foreground text-center space-y-8 shadow-2xl">
               <h2 className="text-4xl md:text-5xl font-bold leading-tight">Ready to transform your productivity?</h2>
               <p className="text-xl opacity-90 max-w-xl mx-auto">
-                Join thousands of teams who are already building the future with AtlasDesk. Start your 14-day free trial today.
+                Join thousands of teams who are already building the future with AtlasDesk.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                 <Button asChild size="lg" variant="secondary" className="h-14 px-10 rounded-2xl text-lg font-bold">
