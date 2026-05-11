@@ -1,3 +1,40 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-dashboard",
+      "description": "Premium dashboard preview",
+      "imageUrl": "https://picsum.photos/seed/atlas1/1200/800",
+      "imageHint": "SaaS dashboard"
+    },
+    {
+      "id": "feature-tasks",
+      "description": "Task management interface",
+      "imageUrl": "https://picsum.photos/seed/atlas2/600/400",
+      "imageHint": "task management"
+    },
+    {
+      "id": "feature-analytics",
+      "description": "Analytics and charts",
+      "imageUrl": "https://picsum.photos/seed/atlas3/600/400",
+      "imageHint": "data analytics"
+    },
+    {
+      "id": "team-collab",
+      "description": "Team collaboration",
+      "imageUrl": "https://picsum.photos/seed/atlas4/600/400",
+      "imageHint": "team collaboration"
+    },
+    {
+      "id": "avatar-1",
+      "description": "User avatar",
+      "imageUrl": "https://picsum.photos/seed/user1/100/100",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "avatar-2",
+      "description": "User avatar",
+      "imageUrl": "https://picsum.photos/seed/user2/100/100",
+      "imageHint": "person portrait"
+    }
+  ]
 }
